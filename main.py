@@ -13,14 +13,14 @@ def run(key):
 
         for process in gameproc:
             cmd = "ps aux| grep '%s'|grep -v xyj " % process
-    		out = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
-    		infos = out.stdout.read().splitlines()
+            out = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
+            infos = out.stdout.read().splitlines()
 
-    		for i in infos:
+            for i in infos:
                 pid = i.split()[1]
-		    pid_2 = str(pid_1).split("b'")[1]
-                pid_3 = str(pid_2).split("'")[1]
-                cmd = 'sudo kill -9 ' + str(pid_3)
+                pid_1 = str(pid,'utf-8')
+                cmd = 'sudo kill -9 ' + str(pid_1)
+                print(cmd)
                 subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
 
         print('over')
